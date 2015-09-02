@@ -1,0 +1,12 @@
+{
+  "name": "MinifyImage",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-imagemin": "~0.9.4"
+  },
+  "dependencies": {
+    "imagemin-mozjpeg": "~5.1.0",
+    "imagemin": "~3.2.0"
+  }
+}
