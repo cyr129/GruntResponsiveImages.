@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-imagemin": "~0.9.4"
+    "grunt-contrib-imagemin": "~0.9.4",
+    "grunt-contrib-copy": "~0.8.1"
   },
   "dependencies": {
     "imagemin-mozjpeg": "~5.1.0",
-    "imagemin": "~3.2.0"
+    "imagemin": "~3.2.0",
+    "grunt-responsive-images": "~0.1.6"
   }
 }

@@ -1,28 +1,42 @@
+
 var mozjpeg = require('imagemin-mozjpeg');
 module.exports = function(grunt) {
 grunt.initConfig({
-  imagemin: {                          // Task
-    static: {                          // Target
-      options: {                       // Target options
-        optimizationLevel: 5,
-        svgoPlugins: [{ removeViewBox: false }],
-        use: [mozjpeg()]
-      },
-      files: {                         // Dictionary of files
-        'Images/image1.png': 'src/image1.png' // 'destination': 'source'
-      }
-    },
-    dynamic: {                         // Another target
+  responsive_images: {
+    dev: {
+      options: {engine:'im'},
+      sizes: [{
+        width: 320,
+        height: 240
+      },{
+        name: 'image1',
+        width: 640
+      },{
+        name: "image1",
+        width: 1024,
+        suffix: "_x2",
+        quality: 0.6
+      }],
       files: [{
-        expand: true,                  // Enable dynamic expansion
-        cwd: 'src/',                   // Src matches are relative to this path
-        src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
-        dest: 'Images/'                  // Destination path prefix
+        expand: true,
+        src: ['*.{jpg,gif,png}'],
+        cwd: 'src/',
+        dest: 'Images/'
+      }]
+    }
+  },
+  copy: {
+    dev: {
+      files: [{
+        expand: true,
+        src: ['**/*', '!app/img/**/*.*'],
+        cwd: 'src/',
+        dest: 'Images/'
       }]
     }
   }
 });
-
-grunt.loadNpmTasks('grunt-contrib-imagemin');
-grunt.registerTask('default', ['imagemin']);
+grunt.loadNpmTasks('grunt-contrib-copy');
+grunt.loadNpmTasks('grunt-responsive-images');
+grunt.registerTask('default', ['copy','responsive_images']);
 };
